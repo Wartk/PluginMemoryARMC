@@ -2,9 +2,13 @@
 
 #include <stdio.h>
 
+int readMemory(void* base, void* offset){
+    __asm("ldr r3, [r0, r1]");
+}
+
 void writeMemory(void *base, void *offset, int value)
 {
- __asm("str r2, [r0, r1]"); //Architecture ARM
+ __asm("str r2, [r0, r1]");
 }
 
 int main(void){
@@ -12,5 +16,5 @@ int main(void){
 
    writeMemory((void*)x, 0x8, 100);
 
-   printf("%i", x[2]);
+   printf("%i", readMemory((void*)x, 0x8));
 }
